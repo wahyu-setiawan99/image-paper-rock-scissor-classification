@@ -1,0 +1,12 @@
+class TargetAccuracy(tf.keras.callbacks.Callback):
+    def __init__(self, point):
+      super(TargetAccuracy, self).__init__()
+      self.point = point
+
+    def on_epoch_end(self, epoch, logs=None):
+      accuracy = logs['accuracy']
+      if accuracy > self.point:
+        self.model.stop_training = True
+
+
+tf.keras.optimizers.experimental.RMSprop(learning_rate=0.0001
